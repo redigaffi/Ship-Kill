@@ -15,25 +15,22 @@ $game = new Game($mysql, $_SESSION['gameId'], $_SESSION['selId']);
 	<script>
 	$(document).ready(function()
 	{
+		checkAttacks();
 		setInterval(function()
 		{
 				checkAttacks();
-		},3000);
+		}, 3000);
 	});
 	</script>
 
 	<body>
 		<?php include RSC . 'tpl/header.php'; ?>
 
-		<div id="attackedZones">
-			dd
-		</div>
+		<div id="attackedZones"></div>
 
 		<section id="container" class="wrapper">
 			<h3>Ataca a tu oponente</h3>
-			<?php
-				$game->CreateGame(5,5,'attack');
-			?>
+			<?php $game->CreateGame(5,5,'attack'); ?>
 		</section>
 		
 

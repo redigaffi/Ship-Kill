@@ -151,5 +151,33 @@ class Game
 		return $attacked;
 	}
 
+	public function attack($cId)
+	{
+
+		$at = 'attacked' . $this->selId;
+
+		$q = $this->sql->query('SELECT `'.$at.'`,`by`,`to_id`,`turn` FROM games WHERE id="'.$this->gameId.'"');
+		$q = $q->fetch_assoc();
+
+		if( $_SESSION['user']['id'] == $q['turn'] )
+		{
+			if( $_SESSION['user']['id'] == $q['by'] )
+				$newId = $q['to_id'];
+			else
+				$newId = $q['by'];
+
+			if( empty($q[$at]) )
+				$this->sql->query('UPDATE `games` SET  '.$at.'="'.$cId.'", turn="'.$newId.'" WHERE id = "'.$this->gameId.'" ');
+			else
+			{
+				$new = $q[$at] . ':' . $cId;
+				$this->sql->query('UPDATE `games` SET  '.$at.'="'.$new.'", turn="'.$newId.'" WHERE id = "'.$this->gameId.'" ');
+
+			}
+		}
+		else
+			return 'turn_false';
+	}
+
 }
 ?>

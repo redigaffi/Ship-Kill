@@ -160,5 +160,14 @@ function checkAttacks()
 
 function attack(id)
 {
-	alert(id);
+	
+	$.post('./system/post/attack.php', { cId: id }, function(data)
+	{
+		switch(data)
+		{
+			case 'turn_false':
+				alert('No es tu turno');
+			break;
+		}
+	});
 }
