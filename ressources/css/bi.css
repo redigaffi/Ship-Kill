@@ -1,0 +1,24 @@
+/**
+*	Buttons and input CSS
+*	
+**/
+
+.input_large
+{
+	width: 48%;
+	height: 10px;
+	padding: 8px;
+	margin: auto auto;
+	outline: none;
+}
+
+.button_green 
+{
+	width: 110px;
+	padding: 7px;
+	background-color: #0cd316;
+	border: 1px solid #12aa1a;
+	color: white;
+	font-weight: bold;
+	border-radius: 4px;
+}
