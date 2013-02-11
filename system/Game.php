@@ -104,7 +104,7 @@ class Game
 		$count = 0;
 		
 
-		echo '<table border="1px">';
+		echo '<table>';
 		for($a = 0; $a < $c; $a++)
 		{
 

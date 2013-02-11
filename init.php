@@ -70,8 +70,8 @@ $menu =
 				[
 					'Perfil' 		=> 'profile',
 					'Partidas' 		=> 'game',
-					'Ranking' 		=> '#',
-					'Carácter'		=> '#'
+					'Ranking' 		=> 'rank',
+					'Personaje'		=> 'person'
 				]
 	];
 

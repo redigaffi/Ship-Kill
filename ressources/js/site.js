@@ -81,7 +81,7 @@ function select(id)
 		{
 			// Se ha seleccionado
 			case 'good':
-				$('table tr td#'+id).html('<img src="./ressources/img/point.png" />');
+				$('table tr td#'+id).html('<center><img src="./ressources/img/point.png" /></center>');
 			break;
 
 			// El campo ya está seleccionado
@@ -146,7 +146,7 @@ function checkAttacks()
 				else
 				{
 					text += '<span id="position">¡ALERTA! </span> Le han atacado, POSICION ' + arr[a] + '.<br />';			
-					$('table tr td#'+arr[a]).html('<img src="./ressources/img/cancel.png" />');
+					$('table tr td#'+arr[a]).html('<center><img src="./ressources/img/cancel.png" /></center>');
 					
 				}
 			}

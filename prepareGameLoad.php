@@ -18,6 +18,7 @@ $game = new Game($mysql, $id, $sel);
 	<script>
 	$(document).ready(function()
 	{
+		isReadyGame();
 		$('#statusPlayReadyGood').hide();
 		$('#statusPlayReadyBad').hide();
 		$('#LinkToGame').hide();

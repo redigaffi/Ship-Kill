@@ -1,7 +1,7 @@
 <?php include '../../../init.php'; 
 $query = $mysql->query('SELECT * FROM games');
 ?>
-<h3>Partidas disponibles</h3>
+<h3>Partidas disponibles para ti</h3>
 <p>
 	<table id="game">
 	<tr>
