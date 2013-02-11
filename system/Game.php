@@ -104,14 +104,14 @@ class Game
 		$count = 0;
 		
 
-		echo '<table>';
+		echo '<table class="gameTable">';
 		for($a = 0; $a < $c; $a++)
 		{
 
 			echo '<tr>';
 			for($b = 0; $b < $r; $b++)
 			{?>
-				<td onclick="<?=$do.'('.$count.')'?>;" id="<?=$count?>"><?=$count?></td>
+				<td onclick="<?=$do.'('.$count.')'?>;" id="<?=$count?>"></td>
 			<?php
 				++$count;
 			}
@@ -190,6 +190,20 @@ class Game
 		}
 		else
 			return 'turn_false';
+	}
+
+	public function getChats()
+	{
+		$q = $this->sql->query('SELECT * FROM chat WHERE chatId="'.$this->gameId.'"');
+		$text = '';
+		while( $data = $q->fetch_assoc() )
+		{
+			$getUser = $this->sql->query('SELECT name FROM users WHERE id="'.$data['id'].'"');
+			$getUser = $getUser->fetch_assoc();
+			$text 	.= '<strong>'. $getUser['name'] . '</strong> Envió - ' . $data['msg']  . ':';
+		}
+		return $text;
+
 	}
 
 }

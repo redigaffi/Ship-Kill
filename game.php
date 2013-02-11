@@ -18,6 +18,7 @@ if(!$game->canJoin($_SESSION['user']['id']))
 		$('#myTurnTrue').hide();
 		$('#myTurnFalse').hide();
 
+		refreshChat('#chats');
 		MyTurn();
 		checkAttacks();
 		setInterval(function()
@@ -32,6 +33,14 @@ if(!$game->canJoin($_SESSION['user']['id']))
 	<body>
 		<?php include RSC . 'tpl/header.php'; ?>
 		<div id="myTurnTrue">Tu Turno</div>
+
+		<div id="chat">
+			<h3>Chat</h3>
+			<div id="chats"></div>
+			<input placeholder="Escribe tu mensaje" id="sendText" type="text"></input>
+			<button onclick="sendChat('#sendText');	">Enviar</button>
+		</div>
+
 		<div id="myTurnFalse">Espera Tu Turno</div>
 		<div style="" id="attackedZones"></div>
 

@@ -11,6 +11,7 @@
 	$(document).ready(function()
 	{
 		loadInBox('#container', './ressources/tpl/ajax/index.php', 'Índice - Ship Kill');
+		$('#intro_sexy_tweet').scrollTo('40%');
 	});
 	</script>
 

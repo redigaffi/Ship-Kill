@@ -189,3 +189,26 @@ function MyTurn()
 		}
 	});
 }
+
+function sendChat(selector)
+{
+	$.post('./system/post/chat.php', { msg: $(selector).val() }, function(data)
+	{
+		alert(data);
+	});
+}
+
+function refreshChat(selector)
+{
+	$.post('./system/post/chat.php', { }, function(data)
+	{
+		var chats = data.split(':');
+		var msg 	= '';
+
+		for(a in chats)
+			msg += '<div class="msg">' + chats[a] + '</div>';
+
+		$(selector).html(msg);
+
+	});
+}

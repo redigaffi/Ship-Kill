@@ -4,7 +4,7 @@
 **/
 
 define('USER', 'root');
-define('PASS', 'You Never Get it =)');
+define('PASS', 'd');
 define('HOST', 'localhost');
 define('DATA', 'game');
 
