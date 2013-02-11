@@ -324,19 +324,46 @@ table#game tr td
 
 #attackedZones
 {
+	clear: both;
 	float: right;
 	width: 400px;
 	height: 20px;
-	margin-top: 100px;
+	margin-top: 20px;
 	margin-right: 30px;
 }
+
 #attackedZones span#position 
 {
 	color: red;
 	font-weight: bold;
 }
-#attackedZones ul li 
+
+#myTurnTrue
 {
-	margin: 0px;
-	padding: 0px;
+	clear: both;
+	padding: 5px;
+	color: white;
+	float: right;
+	margin-top: 100px;
+	margin-right: 120px;
+	width: 300px;
+	height: 20px;
+	text-align: center;
+	background-color: #0cd316;
+	border: 1px solid #12aa1a;
+}
+
+#myTurnFalse
+{
+	clear: both;
+	padding: 5px;
+	color: white;
+	float: right;
+	margin-top: 100px;
+	margin-right: 120px;
+	width: 300px;
+	height: 20px;
+	text-align: center;
+	background-color: #e00808;
+	border: 1px solid #b70303;
 }

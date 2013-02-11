@@ -19,10 +19,10 @@ class Game
 	public function canJoin($id)
 	{
 
-		$q = $this->sql->query('SELECT to_id FROM games WHERE id="'.$this->gameId.'"');
+		$q = $this->sql->query('SELECT `to_id`, `by` FROM games WHERE id="'.$this->gameId.'"');
 		$q = $q->fetch_assoc();
 
-		if($q['to_id'] == $id)
+		if( ($q['to_id'] == $id) || ($q['by'] == $id) )
 			return true;
 		else
 			return false;
@@ -151,29 +151,42 @@ class Game
 		return $attacked;
 	}
 
+	public function playerTurn()
+	{
+		$q = $this->sql->query('SELECT `turn` FROM games WHERE id="'.$this->gameId.'"');
+		$q = $q->fetch_assoc();
+		return $q['turn'];
+	}
+
 	public function attack($cId)
 	{
 
 		$at = 'attacked' . $this->selId;
 
-		$q = $this->sql->query('SELECT `'.$at.'`,`by`,`to_id`,`turn` FROM games WHERE id="'.$this->gameId.'"');
+		$q = $this->sql->query('SELECT `'.$at.'`,`by`,`to_id` FROM games WHERE id="'.$this->gameId.'"');
 		$q = $q->fetch_assoc();
 
-		if( $_SESSION['user']['id'] == $q['turn'] )
+		if( $_SESSION['user']['id'] == $this->playerTurn() )
 		{
-			if( $_SESSION['user']['id'] == $q['by'] )
-				$newId = $q['to_id'];
-			else
-				$newId = $q['by'];
 
-			if( empty($q[$at]) )
-				$this->sql->query('UPDATE `games` SET  '.$at.'="'.$cId.'", turn="'.$newId.'" WHERE id = "'.$this->gameId.'" ');
-			else
+			if( !empty($cId) )
 			{
-				$new = $q[$at] . ':' . $cId;
-				$this->sql->query('UPDATE `games` SET  '.$at.'="'.$new.'", turn="'.$newId.'" WHERE id = "'.$this->gameId.'" ');
+				if( $_SESSION['user']['id'] == $q['by'] )
+					$newId = $q['to_id'];
+				else
+					$newId = $q['by'];
 
+				if( empty($q[$at]) )
+					$this->sql->query('UPDATE `games` SET  '.$at.'="'.$cId.'", turn="'.$newId.'" WHERE id = "'.$this->gameId.'" ');
+				else
+				{
+					$new = $q[$at] . ':' . $cId;
+					$this->sql->query('UPDATE `games` SET  '.$at.'="'.$new.'", turn="'.$newId.'" WHERE id = "'.$this->gameId.'" ');
+
+				}
 			}
+
+			return 'turn_true';
 		}
 		else
 			return 'turn_false';

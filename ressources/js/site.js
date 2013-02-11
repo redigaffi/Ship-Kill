@@ -171,3 +171,21 @@ function attack(id)
 		}
 	});
 }
+
+function MyTurn()
+{
+	$.post('./system/post/turn.php', {}, function(data)
+	{
+		var num = parseInt(data);
+		if(num)
+		{
+			$('#myTurnFalse').hide()
+			$('#myTurnTrue').hide().fadeIn('slow');
+		}
+		else
+		{
+			$('#myTurnTrue').hide();
+			$('#myTurnFalse').hide().fadeIn('slow');
+		}
+	});
+}

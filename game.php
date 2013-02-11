@@ -4,8 +4,8 @@ $site = 'Play';
 
 $game = new Game($mysql, $_SESSION['gameId'], $_SESSION['selId']);
 
-//if(!$game->canJoin($_SESSION['user']['id']))
-//	header('Location: ' . SITE . 'me.php');
+if(!$game->canJoin($_SESSION['user']['id']))
+	header('Location: ' . SITE . 'me.php');
 ?>
 
 <!DOCTYPE html>
@@ -15,18 +15,25 @@ $game = new Game($mysql, $_SESSION['gameId'], $_SESSION['selId']);
 	<script>
 	$(document).ready(function()
 	{
+		$('#myTurnTrue').hide();
+		$('#myTurnFalse').hide();
+
+		MyTurn();
 		checkAttacks();
 		setInterval(function()
 		{
-				checkAttacks();
-		}, 3000);
+			MyTurn();
+			checkAttacks();
+		}, 2000);
+
 	});
 	</script>
 
 	<body>
 		<?php include RSC . 'tpl/header.php'; ?>
-
-		<div id="attackedZones"></div>
+		<div id="myTurnTrue">Tu Turno</div>
+		<div id="myTurnFalse">Espera Tu Turno</div>
+		<div style="" id="attackedZones"></div>
 
 		<section id="container" class="wrapper">
 			<h3>Ataca a tu oponente</h3>
